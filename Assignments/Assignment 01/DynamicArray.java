@@ -43,4 +43,45 @@ public class DynamicArray {
         this.position++;
     } // method add
     
+    public void resize() {
+        //create "newArray" with the size being 10 positions bigger than the original string   
+        String[] newArray= new String[size + 10];
+
+        for(int x; x<data.length; x++){
+            newArray[x] = data[x];
+        }
+    } // method resize
+
+    public boolean contains(String string) {
+        boolean contains = false;
+        //While the array doesn't have the
+        while (!contains){
+            if (data == string){
+                contains = true;
+            }
+        }
+        return contains;
+
+    } // method contains
+
+    public int count(String string) {
+        int count = 0;
+        while(data.length){
+            if (data[data.position] == string){ //If the element of the array is the same as the input string
+                count++;    //Add to the counter
+            }
+            data.position++;    //Add to increase the element position.
+        }
+        return count;
+    } // method count
+
+    public boolean addUnique (String string) {
+        //boolean because we want to know if adding the string we input is a success.
+        boolean success = !this.contains(string);
+        if (sucess){
+            this.add(string);
+        }
+        return success;
+    } // method addUnique
+
 } // class DynamicArray
