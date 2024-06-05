@@ -34,17 +34,17 @@ public class DynamicArray {
      * @param string new item to add to array
      */
     public void add(String string) {
-        // Make sure there is room in array data
+    /* Make sure there is room in array data*/
         if (this.position == this.data.length) {
             resize();
         }
-        // Now array has room for more elements.
+    /* Now array has room for more elements.*/
         this.data[this.position] = string;
         this.position++;
     } // method add
     
     public void resize() {
-        //create "newArray" with the size being 10 positions bigger than the original string   
+    /*create "newArray" being 10 elements bigger than the original*/   
         String[] newArray= new String[size + 10];
 
         for(int x; x<data.length; x++){
@@ -54,11 +54,19 @@ public class DynamicArray {
 
     public boolean contains(String string) {
         boolean contains = false;
-        //While the array doesn't have the
+    /*While we haven't found the string we are looking for yet: */
         while (!contains){
+    /*If we find the string we want, set contains to true & break from the loop*/
             if (data == string){
                 contains = true;
+                break;
             }
+    /*Break if we reach the end of the list*/
+            if (data.position == data.length){
+                break;
+            }
+    /*Bring us to the next element of the array*/
+            data.position++;
         }
         return contains;
 
@@ -67,16 +75,19 @@ public class DynamicArray {
     public int count(String string) {
         int count = 0;
         while(data.length){
-            if (data[data.position] == string){ //If the element of the array is the same as the input string
-                count++;    //Add to the counter
+    /*If the element of the array is the same as the input string*/
+            if (data[data.position] == string){
+                //Add to the counter
+                count++;
             }
-            data.position++;    //Add to increase the element position.
+             //Add to increase the element position.
+            data.position++;
         }
         return count;
     } // method count
 
     public boolean addUnique (String string) {
-        //boolean because we want to know if adding the string we input is a success.
+    /*boolean: we want to know if adding the string we input is a success.*/
         boolean success = !this.contains(string);
         if (sucess){
             this.add(string);
