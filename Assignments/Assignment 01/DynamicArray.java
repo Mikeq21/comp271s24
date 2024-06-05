@@ -61,7 +61,7 @@ public class DynamicArray {
                 contains = true;
                 break;
             }
-    /*Break if we reach the end of the list*/
+    /*Break if  we reach the end of the list*/
             if (data.position == data.length){
                 break;
             }
