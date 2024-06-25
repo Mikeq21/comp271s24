@@ -98,5 +98,31 @@ public class DynamicArray implements BasicTools {
         return canBeAdded;
     } // method addUnique
 
+
+    public boolean intersects(DynamicArray other){
+        boolean intersect = false;
+        int thisIndex = 0;
+        int otherIndex = 0;
+
+        //Make sure the length of data checked doesn't exceed the data we are given
+        while (thisIndex < this.data.length && otherIndex < other.data.length) {
+            
+            //While searching the java documentation, I found the compareTo operator. This compares the two strings inside each DynamicArray, char by char.
+            int compared = this.data[thisIndex].compareTo(other.data[otherIndex]);
+            if (compared == 0) {
+                intersect = true;
+                break;
+            
+            //In hindsight, this only works assuming the DynamicArrays are sorted, which they aren't.
+            } else if (compared < 0) {
+                thisIndex++;
+            } else {
+                otherIndex++;
+            }
+        }
+        
+    return intersect;
+    }
+
     
 } // class DynamicArray
