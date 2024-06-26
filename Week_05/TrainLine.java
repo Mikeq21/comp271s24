@@ -44,4 +44,19 @@ public class TrainLine {
             currentStation.setNext(newStation);
         }
     } // method addStation
+    public boolean contains(String name){
+        //Initialize a boolean "contains" and initialize variable for the current station we are in.
+        boolean contains = false;
+        Station currentStation = this.head;
+
+        //while the current station is NOT null, if the current station name = the desired name, then true.
+        //PROBLEM with this approach: != null will IGNORE the LAST station.
+        while (currentStation != null){
+            if (currentStation.getName().equals(name)){
+                contains = true;
+            }
+            currentStation = currentStation.getNext();
+        }
+        return contains;
+    } // contains method
 }

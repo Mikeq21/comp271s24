@@ -1,0 +1,24 @@
+The source code for the original toString Method is:
+ 
+205:   public String toString()
+206:   {
+207:     return getClass().getName() + '@' + Integer.toHexString(hashCode());
+208:   }
+
+The problem with tis approach is with the Integer.toHexString(hashCode()) 
+portion of the return statement. The reason why it is like this is to
+recieve the memory adress of the location of the object in Hexadecimal format.
+
+To improve this, I would override the source code's "toString()" with my own:
+
+205:   public String toString()
+206:   {
+207:     return "TrainLine Station: " + name + "\n Next Station: " + next;
+208:   }
+
+The reason why I believe this is better, is because our goal is to print
+the object itself, not the name of the class behind the object.
+
+In this new toString() design, we return the name of the station, as well
+as the next station in the line. This would benefit us the most in my
+opinion, so that we can fully understand where we are at in line.
