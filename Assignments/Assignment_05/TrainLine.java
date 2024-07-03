@@ -145,7 +145,6 @@ public class TrainLine {
     } // method toString
 
     public int indexOf(String name) {
-        System.out.println("Indexing...");
         Station current = this.head;
         int index = 0;
         boolean exists = false;
