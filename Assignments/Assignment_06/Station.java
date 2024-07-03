@@ -1,7 +1,6 @@
 /**
- * Object that simulates a train station with tracks pointing in two directions.
- * These objects are used by class TrainLine to simulate a unidirectional or
- * a bi-directional train line.
+ * Object that simulates a simple train station. These objects are used by
+ * class TrainLine to simulate a train route.
  */
 public class Station {
 
@@ -14,8 +13,7 @@ public class Station {
 
     /**
      * A simple constructor to instantiate a Station object with a given name
-     * but unknown (null) next and previous station.
-     * 
+     * but unknown (null) next and prev(ious) stations.
      * @param name
      */
     public Station(String name) {
@@ -34,8 +32,7 @@ public class Station {
         this.prev = prev;
     } // method setPrev
 
-    /**
-     * Predicate accessor for next */
+    /** Predicate accessor for next */
     public boolean hasNext() {
         return this.next != null;
     } // method hasNext
@@ -55,7 +52,7 @@ public class Station {
         return this.prev;
     } // method getPrev
 
-    /** Accessor for Name */
+    /** Mutator for Name */
     public String getName() {
         return this.name;
     } // method getName
