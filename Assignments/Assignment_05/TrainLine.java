@@ -164,14 +164,20 @@ public class TrainLine {
     } // method indexOf    
     
     public void append(TrainLine other){
-        //While the current station in "other" is not empty, add it after the tail of the current, and make it the new tail
+        //initialize pointe in "other"
         Station otherCurrent = other.head;
+        //While the next station exists in "other"
         while (otherCurrent != null) {
-            this.addAfter(this.tail.getName(), otherCurrent.getName());
-            this.tail.setNext(otherCurrent);
+            //add the current station to the tail of "this"
+            boolean added = this.addAfter(this.tail.getName(), otherCurrent.getName());
+            if (added) {
+                //increment the tail
+                this.tail = this.tail.getNext();
+                //increment the number of stations
+                this.numberOfStations++;
+            }
+            //increment "other" pointer
             otherCurrent = otherCurrent.getNext();
-            
-            this.numberOfStations++;
         }
 
     }
