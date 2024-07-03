@@ -68,15 +68,21 @@ public class TrainLine {
      * @param stationName String with station name to search for
      * @return true if station found; false otherwise or if object has no stations.
      */
-    public boolean contains(String stationName) {
+
+    /*public boolean contains(String stationName) {
         boolean found = false;
         Station current = this.head;
         while (!found && current != null) {
             found = current.getName().equals(name);
             current = current.getNext();
-        }
+
+            }
         return found;
-    } // method contains
+        OLD contains method*/
+
+    public boolean contains (String name) {
+        return indexOf(name) != -1;
+    } //NEW contains method
 
     /**
      * Inserts a new station after an existing one.
@@ -130,7 +136,7 @@ public class TrainLine {
             Station current = this.head;
             while (current.hasNext()) {
                 sb.append(String.format("[ %s ] --> ", current.getName()));
-                current = current.getNext()
+                current = current.getNext();
             }
             // Treat the last station in the line
             sb.append(String.format("[ %s ]", tail.getName()));
@@ -138,8 +144,35 @@ public class TrainLine {
         return sb.toString();
     } // method toString
 
-    /** STUB FOR indexOf */
     public int indexOf(String name) {
+        Station current = this.head;
+        int index = 0;
+        
+        /*while we haven't reached the back of the station, and if the current station 
+        is the name of the station we want, the result is the index. 
+        If it isn't, increment the index and loop back and check the next station
+        and finally, if the while loop condition is not met, return -1. */
+        
+        while(current != null){
+            if(current.getName().equals(name)){
+                return index;
+            }
+            current = current.getNext();
+            index++;
+        }
         return -1;
-    } // method indexOf
+    } // method indexOf    
+    
+    public void append(TrainLine other){
+        //While the current station in "other" is not empty, add it after the tail of the current, and make it the new tail
+        Station otherCurrent = other.head;
+        while (otherCurrent != null) {
+            this.addAfter(this.tail.getName(), otherCurrent.getName());
+            this.tail.setNext(otherCurrent);
+            otherCurrent = otherCurrent.getNext();
+            
+            this.numberOfStations++;
+        }
+
+    }
 }

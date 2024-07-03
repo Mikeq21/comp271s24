@@ -13,6 +13,22 @@ public class SimpleTesting {
         for (String name : stationNames) {
             redLineSB.addStation(name);
         }
+        TrainLine redLine2SB = new TrainLine();
+        String[] stationNames2 = { "Bryn Mawr", "Berwin", "Argyle",
+                "Lawrence", "Wilson", "Sheridan" };
+        for (String name : stationNames2) {
+            redLine2SB.addStation(name);
+        
+        redLineSB.append(redLine2SB);
+        System.out.println(redLineSB.toString());
+        boolean appended = true;
+        for (int i = 0; i < stationNames2.length; i++) {
+            appended = appended && (redLineSB.indexOf(stationNames2[i]) == stationNames.length + i);
+        }
+        System.out.printf("\n\nAppend test: %s", (appended ? PASS : FAIL));
+
+
+        }
         // Test sequence
         boolean sequence = true;
         for (int i = 0; i < stationNames.length; i++) {
