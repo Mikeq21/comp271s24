@@ -13,6 +13,7 @@ public class SimpleTesting {
         for (String name : stationNames) {
             redLineSB.addStation(name);
         }
+        //MY line to append onto redLineSB
         TrainLine redLine2SB = new TrainLine();
         String[] stationNames2 = { "Bryn Mawr", "Berwyn", "Argyle",
                 "Lawrence", "Wilson", "Sheridan" };

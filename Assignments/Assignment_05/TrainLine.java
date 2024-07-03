@@ -145,22 +145,28 @@ public class TrainLine {
     } // method toString
 
     public int indexOf(String name) {
+        System.out.println("Indexing...");
         Station current = this.head;
         int index = 0;
+        boolean exists = false;
         
         /*while we haven't reached the back of the station, and if the current station 
-        is the name of the station we want, the result is the index. 
+        is the name of the station we want, return the index. 
         If it isn't, increment the index and loop back and check the next station
         and finally, if the while loop condition is not met, return -1. */
         
-        while(current != null){
-            if(current.getName().equals(name)){
-                return index;
+        while(!exists && current != null){
+                if(current.getName().equals(name)){
+                exists = true;
+                break;
             }
             current = current.getNext();
             index++;
         }
-        return -1;
+        if (!exists){
+            index = -1;
+        }
+            return index;
     } // method indexOf    
     
     public void append(TrainLine other){
