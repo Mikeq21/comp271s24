@@ -12,6 +12,7 @@ public class TrainLine {
     /** Current number of stations in this object */
     private int numberOfStations;
 
+    //Add a bidirectional option for all trainlines
     private String bidirectional;
 
     /** Default constructor - redundant but good to show intent */
@@ -19,6 +20,9 @@ public class TrainLine {
         this.head = null;
         this.tail = null;
         this.numberOfStations = 0;
+        /**bidirectional doesn't change when set, so we do not need to
+         *  initialize it as anything but itself.
+         */
         this.bidirectional = bidirectional;
     } // default constructor
 
@@ -39,12 +43,18 @@ public class TrainLine {
      * 
      * @param name String with name of new station to add
      */
-    public void addStation(String name, Boolean positive_direction) {
+    public void addStation(String name, Boolean positiveDirection) {
         // Create a new station object with the given name
         Station newStation = new Station(name);
         // Use addStion(Station) method
-        this.addStation(newStation, positive_direction);
+        this.addStation(newStation, positiveDirection);
     } // method addStation
+    /**
+     * Initialize a boolean "positiveDirection" to determine if the trainline
+     * is headed to the right or left. This allows for Bidirectional trainlines
+     * to move BOTH WAYS, while only allowing for the Unidirectional lines to
+     * move in their respective directions.
+    */
 
     /**
      * Add a new station at the end of this trainline. The method takes
@@ -58,7 +68,11 @@ public class TrainLine {
     public void addStation(Station station, Boolean positiveDirection) {
         // Check if this trainline is bidirectional. If not, it checks if it is facing right.
         boolean addAfter = (this.bidirectional.equals("both") && positiveDirection || this.bidirectional.equals("right"));
-        // Check if this trainline has a head station yet or not
+        
+        //Check if this is a legal addition (If uni-directional, check if going the right way)
+        boolean illegal = ((this.bidirectional.equals("right") && !positiveDirection) || (this.bidirectional.equals("left") && positiveDirection));
+
+        // Check if this trainline has a head station yet or not [THIS IS UNIVERSAL, REGUARDLESS OF TRAINLINE DIRECTION]
         if (this.head == null) {
             // There is no head station in this trainline. Make the
             // new station, just created, the head station and also
@@ -66,14 +80,16 @@ public class TrainLine {
             this.head = station;
             this.tail = station;
         }
-        if (addAfter){
+        if (addAfter && !illegal){
             // The trainline has an existing head station. Therefore,
             // it also has a known last station (this.tail)
                 this.tail.setNext(station); // add new station after tail station
                 this.tail = station; // Designate newly added station as tail station
-        } else {
+        } else if (!addAfter && !illegal){
             this.head.setPrev(station); // add new station before head station
             this.head = station; // Designate newly added station as head station
+        } else { // Just as a marker for an illegal move.
+            System.out.printf("Error, [" + this.bidirectional.toString() + "] cannot move: positiveDirection[" + positiveDirection + "]." );
         }
         // Update station counter
         this.numberOfStations++;
