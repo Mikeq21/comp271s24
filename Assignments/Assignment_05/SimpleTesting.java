@@ -26,6 +26,7 @@ public class SimpleTesting {
         
         boolean appended = true;
         for (int i = 0; i < stationNames2.length; i++) {
+            //If the end of stationNames + i is equal to StationNames2[i], then Pass.
             appended = appended && (redLineSB.indexOf(stationNames2[i]) == stationNames.length + i);
         }
         System.out.printf("\n\nAppend test: %s", (appended ? PASS : FAIL));
