@@ -12,11 +12,14 @@ public class TrainLine {
     /** Current number of stations in this object */
     private int numberOfStations;
 
+    private String bidirectional;
+
     /** Default constructor - redundant but good to show intent */
-    public TrainLine() {
+    public TrainLine(String bidirectional) {
         this.head = null;
         this.tail = null;
         this.numberOfStations = 0;
+        this.bidirectional = bidirectional;
     } // default constructor
 
     /** Accessor for number of stations present in this trainline */
@@ -36,11 +39,11 @@ public class TrainLine {
      * 
      * @param name String with name of new station to add
      */
-    public void addStation(String name) {
+    public void addStation(String name, Boolean positive_direction) {
         // Create a new station object with the given name
         Station newStation = new Station(name);
         // Use addStion(Station) method
-        this.addStation(newStation);
+        this.addStation(newStation, positive_direction);
     } // method addStation
 
     /**
@@ -52,7 +55,9 @@ public class TrainLine {
      * 
      * @param station Station object to insert at teh end of the line
      */
-    public void addStation(Station station) {
+    public void addStation(Station station, Boolean positiveDirection) {
+        // Check if this trainline is bidirectional. If not, it checks if it is facing right.
+        boolean addAfter = (this.bidirectional.equals("both") && positiveDirection || this.bidirectional.equals("right"));
         // Check if this trainline has a head station yet or not
         if (this.head == null) {
             // There is no head station in this trainline. Make the
@@ -60,11 +65,15 @@ public class TrainLine {
             // the tail station of the line and we are done.
             this.head = station;
             this.tail = station;
-        } else {
+        }
+        if (addAfter){
             // The trainline has an existing head station. Therefore,
-            // it also has a known last station (this.tail).
-            this.tail.setNext(station); // add new station after tail station
-            this.tail = station; // Designate newly added station as tail station
+            // it also has a known last station (this.tail)
+                this.tail.setNext(station); // add new station after tail station
+                this.tail = station; // Designate newly added station as tail station
+        } else {
+            this.head.setPrev(station); // add new station before head station
+            this.head = station; // Designate newly added station as head station
         }
         // Update station counter
         this.numberOfStations++;
