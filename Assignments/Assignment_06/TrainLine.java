@@ -24,6 +24,11 @@ public class TrainLine {
          *  initialize it as anything but itself.
          */
         this.bidirectional = bidirectional;
+
+        //If not valid entry, assume TrainLine is BIDIRECTIONAL
+        if (!(this.bidirectional.equals("both") || this.bidirectional.equals("left") || this.bidirectional.equals("right"))){
+            this.bidirectional = "both";
+        } 
     } // default constructor
 
     /** Accessor for number of stations present in this trainline */
