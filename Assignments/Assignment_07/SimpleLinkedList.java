@@ -64,10 +64,10 @@ public class SimpleLinkedList implements Stack271<String>, Queue271<String> {
                 head = newNode;
                 tail = newNode;
             } else {
-                /** Set the newNode to be before the Head */
+                // Set the newNode to be before the Head
                 newNode.setNext(head);
                 
-                /** Set the newNode as the new Head */
+                // Set the newNode as the new Head
                 head = newNode;
             }
             usage++;    // Increment usage
@@ -78,13 +78,13 @@ public class SimpleLinkedList implements Stack271<String>, Queue271<String> {
     public String pull() {
         String data = null;
         
-        /** If the list is NOT empty */
+        // If the list is NOT empty
         if (head != null) {
             
-            /** Take the data from the current head */
+            // Take the data from the current head
             data = head.toString();
             
-            /** Set the next Node in line as head */
+            // Set the next Node in line as head
             head = head.getNext();
             
             usage--;    // Lower the usage by 1
@@ -115,9 +115,9 @@ public class SimpleLinkedList implements Stack271<String>, Queue271<String> {
                 head = newNode;
                 tail = newNode;
             } else {
-                /** Set the added Node after the tail */
+                // Set the added Node after the tail
                 tail.setNext(newNode);
-                /** Set the new Node as tail */
+                // Set the new Node as tail
                 tail = newNode;
             }
     }
@@ -127,11 +127,11 @@ public class SimpleLinkedList implements Stack271<String>, Queue271<String> {
     public String remove() {
         String data = null;
         
-        /** Set the next Node in line as head */
+        // Set the next Node in line as head
         if (head != null){
-            /** Take the data from Head */
+            // Take the data from Head
             data = head.toString();
-            /** Set the head as the next Node */
+            // Set the head as the next Node
             head = head.getNext();
             usage--;    // Lower the usage by 1
 
@@ -145,7 +145,8 @@ public class SimpleLinkedList implements Stack271<String>, Queue271<String> {
         return data;
     } // remove method
 
-    /** I believe having an isFull method is the best way of ensuring usage does not exceed capacity */
+    /** I believe having an isFull method is the best 
+     * way of ensuring usage does not exceed capacity */
     public boolean isFull(){
         boolean isFull = false;
         if (usage > capacity){
