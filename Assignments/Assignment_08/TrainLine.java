@@ -218,4 +218,65 @@ public class TrainLine {
         }
     } // method append
 
+    /**
+    * Prints every station in a Trainline.
+    *
+    * @return Station names, separated by a new line.
+    */
+    public String listStations(){
+        Station pointer = this.head;
+        String trainName = "";
+        
+        // Handle null case
+        if (this.head == null) {
+            return "The line is empty.";
+
+        } else { 
+            while (pointer != null) {
+                trainName += pointer.getName(); // Concatenate each Train Station into trainName.
+                pointer = pointer.getNext(); // Move the pointer to the next Station.               
+                if (pointer != null) {
+                    trainName += "\n"; // Move the next Station in the Line to a new Line.
+                }
+            }
+        }
+    return trainName;
+    } // method listStations - Michael Quiroga
+
+    /**
+    * Determines if two Trainline objects intersect
+    *
+    * @param other the compared Trainline.
+    * @return Boolean intersects
+    */
+    public boolean intersects(TrainLine other) {
+        boolean intersects = false;
+        Station pointer = this.head;
+        
+        while (pointer != null) { //iterate through this Station
+            Station otherPointer = other.head;
+            // After extensive testing, I realize that the otherPointer must be initialized
+            // inside the loop, so that the pointer can correctly increment after each iteration
+            // of the proceeding while loop (while: otherpointer isnt null) 
+
+            while (otherPointer != null) { //iterate through other Station
+                if (pointer.equals(otherPointer)) {
+                    intersects = true;
+                }
+                otherPointer = otherPointer.getNext(); // increment other pointer
+            }
+            pointer = pointer.getNext();
+        }
+        return intersects;
+    } // method intersects - Michael Quiroga
+
+    /**
+    * Calculates difference between two Trainlines.
+    *
+    * @param other The compared Trainline.
+    * @return The difference of the length of THIS Trainline - (Trainline inside Parenthesis).
+    */
+    public int CompareTo(TrainLine other) {
+        return this.getNumberOfStations() - other.getNumberOfStations();
+    } // method CompareTo - Michael Quiroga
 } // class TrainLine
