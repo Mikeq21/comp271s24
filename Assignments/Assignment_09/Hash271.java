@@ -6,15 +6,41 @@ public class Hash271 {
     /** Foundation array of node objects */
     Node[] foundation;
 
+    /** Load Factor (Amount of nodes / Length of foundation)*/
+    private double loadFactor = 0;
+
+    /** Thresholds  */
+    private static final double DEFAULT_THRESHOLD = 0.75;
+    private final double threshold;
+
     /** Basic constructor */
-    public Hash271(int size) {
+    public Hash271(int size, double threshold) {
         this.foundation = new Node[size];
+        this.threshold = threshold;
     } // basic constructor
+
+    /** Default constructor */
+    public Hash271(int size) {
+        this(size, DEFAULT_THRESHOLD);
+    } // default constructor
+
 
     /** Default constructor */
     public Hash271() {
         this(DEFAULT_SIZE);
     } // default constructor
+
+    //Creating a method to update the loadFactor was a much easier approach, after realizing I needed to use it so many times.    
+    private void updateLoadFactor() {
+        int nodeCount = 0;
+        for (Node node : foundation) {
+            while (node != null) {
+                nodeCount++;
+                node = node.getNext();
+            }
+        }
+        this.loadFactor = (double) nodeCount / this.foundation.length;
+    }
 
     /**
      * Map an integer number to one of the positions of the underlying array. This
@@ -46,6 +72,10 @@ public class Hash271 {
             }
             // Put the new node to the array position
             this.foundation[destination] = node;
+            updateLoadFactor();
+            if (this.loadFactor > this.threshold) {
+                rehash();
+            }
         }
     } // method put
 
@@ -91,5 +121,19 @@ public class Hash271 {
         h.put(new Node("C"));
         h.put(new Node("C#"));
         System.out.println(h);
+    }
+    private void rehash() {
+        Node[] oldFoundation = this.foundation;
+        this.foundation = new Node[oldFoundation.length * 2]; // Double the array size
+        for (Node node : oldFoundation) {
+            while (node != null) {
+                Node next = node.getNext();
+                int destination = computeArrayPosition(node.hashCode()); // Rehash and place nodes
+                node.setNext(this.foundation[destination]);
+                this.foundation[destination] = node;
+                node = next;
+            }
+        }
+        updateLoadFactor();
     }
 }
