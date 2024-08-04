@@ -1,0 +1,39 @@
+Michael Quiroga 
+Dr. Irakliotis 
+Comp 271 
+8/4/24 
+
+Comp 271 Self-Assessment 
+
+Throughout this course, I have actively engaged in all 
+class activities and assignments, striving to understand 
+and apply the material effectively.  
+
+Imagining myself at a job interview based on this course's 
+content, I feel that an A- is appropriate to attribute to 
+my performance. While there might be another student who 
+performed slightly better in certain areas, I have the 
+confidence towards the end of this semester to say I believe 
+my work is among the top in the class.  
+
+I attended almost all classes, missing only one session due to
+an emergency, and ensuring I was consistently on time.My camera
+was on for every meeting I attended, and I actively participated
+in the teams meeting hour each day. I sought help via email when
+needed and often asked questions when I was confused during class.  
+
+I always aimed to submit my best work, holding myself to a high
+standard when it came to quality. At the beginning of the
+semester, I gave myself multiple yellows, and a few reds.
+However, as the semester went on, I eventually earned myself
+multiple greens as I improved. I consistently reviewed solutions
+and grading notes, identified and learned from my mistakes, and used 
+the Programmers Pact checklist to avoid repeating errors. I also 
+completed assignment reviews. While scheduling meetings with the 
+instructor to discuss early issues were unsuccessful due to scheduling
+ problems, most of my code still felt improved from when I began.  
+
+Despite facing challenges such as adapting to Codespaces, I spent
+hours outside of class trying to understand it better, and attribute
+part of my bad early performance to that. Based on this assessment,
+I propose a course grade of A-. 
