@@ -1,7 +1,5 @@
-import java.util.Arrays;
-
 public class Sorting271 {
-    
+    //RUN ME
     public static void main(String[] args){
     int[] a = {1,2,8,9};
     int[] b = {0,5,6,7};
@@ -10,56 +8,66 @@ public class Sorting271 {
     int[] b_unsorted = {7,6,5,0};
     int[] c_unsorted = merge(a_unsorted,b_unsorted);
     
-
-    System.out.println(arrayToString(a));
-    System.out.println(arrayToString(b));
-    System.out.println(arrayToString(c));
-    System.out.println("Merged /n");
-    System.out.println(arrayToString(sort(a_unsorted)));
-    System.out.println(arrayToString(sort(b_unsorted)));
+    System.out.println(toString(a));
+    System.out.println(toString(b));
+    System.out.println(toString(c));
+    System.out.println("Merged \n");
+    System.out.println(toString(sort(a_unsorted)));
+    System.out.println(toString(sort(b_unsorted)));
     System.out.println("Sorted");
-    System.out.println(arrayToString(sort(c_unsorted)));
-    System.out.println("Merged Sorted");
-
-
+    System.out.println(toString(sort(c_unsorted)));
+    System.out.println("Merged + Sorted");
 
     }
-    
-    public static String arrayToString(int[] array) {
+    /*
+    I am still unsure why, but I had to write my own "toString" method
+    for the int[] array to work. I based it off of previous toString method overwrites.
+    It doesn't feel like the right solution but experimenting lead to this
+    */
+
+    public static String toString(int[] array) {
+        //null case
         if (array == null) {
-            return "null";
+        return "null";
         }
-        int iMax = array.length - 1;
-        if (iMax == -1) {
+        //Empty case
+        if (array.length == 0) {
             return "[]";
         }
 
         StringBuilder b = new StringBuilder();
         b.append('[');
-        for (int i = 0; ; i++) {
-            b.append(array[i]);
-            if (i == iMax) {
-                return b.append(']').toString();
+
+        int counter = 0;
+        while (counter < array.length) {
+            b.append(array[counter]);
+            counter++;
+            if (counter < array.length) {
+                b.append(", ");
             }
-            b.append(", ");
         }
-    } // ToString method overwrite
+
+        b.append(']');
+        return b.toString();
+    } // ToString method
 
     private static int[] merge(int[] left, int[] right) {
         //Create empty array that is the length of a and b
         int[] merged = new int[left.length + right.length];
         int left_position = 0, right_position = 0, merged_position = 0;
 
-        // Merge the two arrays until one of them is exhausted
+        // Merge the two arrays until one of them is empty
         while (left_position < left.length && right_position < right.length) {
+            
             if (left[left_position] <= right[right_position]) {
                 merged[merged_position++] = left[left_position++];
+            
             } else {
                 merged[merged_position++] = right[right_position++];
             }
         }
 
-        // Copy any remaining elements from each array (left and right)
+        // Copy any remaining elements from either array (left and right)
         while (left_position < left.length) {
             merged[merged_position++] = left[left_position++];
         }

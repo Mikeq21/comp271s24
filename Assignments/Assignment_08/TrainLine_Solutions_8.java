@@ -272,4 +272,31 @@ public class TrainLine_Solutions_8 {
         return this.numberOfStations - other.getNumberOfStations();
     } // method compareTo
 
+    public String reverseListStations(TrainLine_Solutions_8 t) {
+        TrainLine reversed = new TrainLine();
+        Station pointer = t.head;
+
+        // Go to the last station
+        while (pointer != null && pointer.getNext() != null) {
+            pointer = pointer.getNext();
+        }
+
+        // Iterate backwards, adding stations to "reversed" TrainLine
+        int length = t.numberOfStations - 1;
+        while (length >= 0) { //For the length of the given trainline
+            Station current = t.head;
+            
+            int counter = 0;
+            while (counter < length) {
+                current = current.getNext();
+                counter++;
+            }
+            
+            reversed.addStation(new Station(current.getName()));
+            length--;
+    }
+
+    return reversed.toString();
+    }
+
 } // class TrainLine
